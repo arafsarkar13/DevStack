@@ -1,4 +1,20 @@
-import type { Technology } from "../types/technology";
+import type { BadgeColor, Technology } from "../types/technology";
+
+// Maps each badgeColor name (from the JSON data) to real Tailwind classes.
+// This lives OUTSIDE the component so it's only created once, not on
+// every render. Tailwind needs to see the full class names written out
+// like this in the source code — building them with something like
+// `bg-${color}-50` would NOT work, because Tailwind can't "guess" what
+// classes to generate; it only picks up class names it can actually see.
+const BADGE_COLORS: Record<BadgeColor, string> = {
+  blue: "bg-sky-50 text-sky-600",
+  green: "bg-green-50 text-green-600",
+  orange: "bg-orange-50 text-orange-600",
+  red: "bg-red-50 text-red-600",
+  yellow: "bg-yellow-50 text-yellow-700",
+  purple: "bg-purple-50 text-purple-600",
+  gray: "bg-gray-100 text-gray-600",
+};
 
 interface TechCardProps {
   technology: Technology;
@@ -7,8 +23,13 @@ interface TechCardProps {
 }
 
 function TechCard({ technology, isAdded, onAdd }: TechCardProps) {
-  const { name, category, description, icon, rating, difficulty, badge } =
+  const { name, category, description, icon, rating, difficulty, badge, badgeColor } =
     technology;
+
+  // Look up the right classes for this technology's badge color.
+  const badgeClass =
+    "badge rounded-full border-none px-3 text-xs font-medium " +
+    BADGE_COLORS[badgeColor];
 
   // Work out the button's text and classes BEFORE the JSX below.
   // This keeps the return statement simple and easy to read.
@@ -33,9 +54,7 @@ function TechCard({ technology, isAdded, onAdd }: TechCardProps) {
       {/* Icon + badge */}
       <div className="flex items-start justify-between">
         <img src={icon} alt={`${name} icon`} className="h-9 w-9" />
-        <span className="badge badge-ghost rounded-full bg-gray-50 px-3 text-xs font-medium text-gray-500">
-          {badge}
-        </span>
+        <span className={badgeClass}>{badge}</span>
       </div>
 
       {/* Name + description */}
