@@ -2,15 +2,11 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero.tsx";
-import TechGrid from "./components/TechGrid";
-import Footer from "./components/Footer";
+
 import type { Technology } from "./types/technology";
 
 function App() {
-  // The list of technologies the user has picked for their stack.
-  // This lives in App because both TechGrid (adding) and YourStack
-  // (removing) need to read and update it.
+  
   const [stack, setStack] = useState<Technology[]>([]);
 
   function handleAdd(technology: Technology) {

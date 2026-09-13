@@ -4,7 +4,7 @@ import logo from "../assets/logo.png";
 const NAV_LINKS = ["Home", "Technologies", "Projects", "About", "Contact"];
 
 function Navbar() {
-
+  // Controls whether the mobile menu (links) is open or closed
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
