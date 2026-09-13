@@ -57,7 +57,8 @@ function Navbar() {
 
         {/* Right: Sign In / Sign Up */}
         <div className="flex items-center gap-3">
-          <button type="button" className="btn btn-ghost hidden text-sm font-medium sm:inline-flex">
+          <button type="button" 
+          className="btn rounded-full border-none px-5 text-sm font-medium text-white-700 hover:opacity-80">
             Sign In
           </button>
           <button
