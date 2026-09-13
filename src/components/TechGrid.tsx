@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Technology } from "../types/technology";
+import TechCard from "./TechCard";
 
 
 interface TechGridProps {
@@ -15,8 +16,7 @@ function TechGrid({ stack, onAdd, onRemove, onRemoveAll }: TechGridProps) {
   // True while the JSON file is being fetched
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect runs after the component renders. We use it here to fetch
-  // the JSON file once, when TechGrid first mounts (empty dependency array).
+
   useEffect(() => {
     fetch("/data/technologies.json")
       .then((response) => response.json())
@@ -24,9 +24,7 @@ function TechGrid({ stack, onAdd, onRemove, onRemoveAll }: TechGridProps) {
       .finally(() => setIsLoading(false));
   }, []);
 
-  // Checks whether a technology's id is already inside the stack array.
-  // We use this instead of a Set just to keep things beginner-friendly —
-  // .some() checks each item one by one and returns true/false.
+
   function isInStack(id: string) {
     return stack.some((item) => item.id === id);
   }
