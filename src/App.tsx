@@ -2,6 +2,8 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navbar";
+import Hero from "./components/Hero.tsx";
+import TechGrid from "./components/TechGrid";
 
 import type { Technology } from "./types/technology";
 
