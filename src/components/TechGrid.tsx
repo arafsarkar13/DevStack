@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Technology } from "../types/technology";
 import TechCard from "./TechCard";
-
+import YourStack from "./YourStack";
 
 interface TechGridProps {
   stack: Technology[];
